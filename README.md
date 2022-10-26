@@ -2,18 +2,12 @@
 
 ## Back End Repository
 
-### Set up
+## Build
 
-npm install
+To build the project run
+`npm install`
 
-### npm run dev
+## Start the service locally
 
-[http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-### dependencies
-
-/node_modules
-nodemon
-mongoose
-dotenv
-express
+to start service locally run
+`npm run dev`
