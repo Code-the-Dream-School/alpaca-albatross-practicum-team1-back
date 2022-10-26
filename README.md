@@ -5,9 +5,9 @@
 ## Build
 
 To build the project run
-/`npm install`
+`npm install`
 
 ## Start the service locally
 
 to start service locally run
-/`npm run dev`
+`npm run dev`
