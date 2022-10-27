@@ -2,20 +2,15 @@
 
 ## Back End Repository
 
-## Build
+## Build for windows
 
 To build the project run
 `npm install`
 
-## Start the service locally
+## Download Compass
 
-to start service locally run
-`npm run dev`
-
-
-## Downloading Compass
-
-To download Compass, you can use your preferred web browser.
+To download Compass, you can use your preferred web browser. 
+https://www.mongodb.com/docs/compass/master/
 
 1.Open the downloads page.
 
@@ -30,3 +25,11 @@ To download Compass, you can use your preferred web browser.
 2.Follow the prompts to install Compass. You can select the destination of the Compass installation.
 
 3.Once installed, Compass launches and prompts you to configure privacy settings and specify update preferences.
+
+
+## Start the service locally
+
+to start service locally run
+`npm run dev`
+
+
