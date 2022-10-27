@@ -3,6 +3,7 @@ const app = express();
 const port = 3000;
 
 
+//To do: move to env file & get proper dev/prod url(depending on environment)
 const MongoClient = require('mongodb').MongoClient
 
 const url = 'mongodb://127.0.0.1:27017'
@@ -17,7 +18,7 @@ MongoClient.connect(
     if (err) {
       return console.log(err)
     }
-    const db = client.db('volunteer-app')
+    const db = client.db('volunteer')
 
     console.log(`MongoDB Connected: ${url}`)
   }
