@@ -9,7 +9,7 @@ To build the project run
 
 ## Download Compass
 
-To download Compass, you can use your preferred web browser. 
+To download Compass, you can use your preferred web browser.
 https://www.mongodb.com/docs/compass/master/
 
 1.Open the downloads page.
@@ -18,18 +18,22 @@ https://www.mongodb.com/docs/compass/master/
 
 3.Download the latest version of MongoDB Compass for Windows.
 
-## Installing Compass
+## Installing Mongo Compass
 
 1.Double-click the installer file.
 
 2.Follow the prompts to install Compass. You can select the destination of the Compass installation.
 
-3.Once installed, Compass launches and prompts you to configure privacy settings and specify update preferences.
+3.Once installed, Compass launches and prompts you to configure privacy settings and
+specify update preferences.
 
+## Installing Mongo Compass for Mac
+
+`brew tap mongodb/brew`
+`brew install mongodb-community`
+`brew services start mongodb-community`
 
 ## Start the service locally
 
 to start service locally run
 `npm run dev`
-
-
