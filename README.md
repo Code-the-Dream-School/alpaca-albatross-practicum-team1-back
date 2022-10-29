@@ -27,13 +27,18 @@ https://www.mongodb.com/docs/compass/master/
 3.Once installed, Compass launches and prompts you to configure privacy settings and
 specify update preferences.
 
-## Installing Mongo Compass for Mac
+## Build for Mac
 
-`brew tap mongodb/brew`
-`brew install mongodb-community`
-`brew services start mongodb-community`
+To build the project run
+`npm install`
 
-## Start the service locally
+### Installing Mongo Compass
+
+- `brew tap mongodb/brew`
+- `brew install mongodb-community`
+- `brew services start mongodb-community`
+
+### Start the service locally
 
 to start service locally run
 `npm run dev`
