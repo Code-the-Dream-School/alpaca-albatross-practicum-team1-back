@@ -34,9 +34,9 @@ To build the project run
 
 ### Installing Mongo Compass
 
-- `brew tap mongodb/brew`
-- `brew install mongodb-community`
-- `brew services start mongodb-community`
+-   `brew tap mongodb/brew`
+-   `brew install mongodb-community`
+-   `brew services start mongodb-community`
 
 ### Start the service locally
 
