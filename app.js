@@ -23,6 +23,15 @@ MongoClient.connect(
     }
 )
 
+app.use(express.json())
+
+app.get('/', (req, res) => {
+    res.send('Welcome to Volunteer Page!')
+})
+app.post('/posting', (req, res) => {
+    res.status(200).send({ isSuccess: true })
+})
+
 app.listen(port, () => {
     console.log(`server is listening on port ${port}...`)
 })
