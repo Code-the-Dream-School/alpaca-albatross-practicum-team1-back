@@ -29,7 +29,7 @@ app.get('/', (req, res) => {
     res.send('Welcome to Volunteer Page!')
 })
 app.post('/posting', (req, res) => {
-    res.status(200).send({ isSuccess: true })
+    res.status(200).json({ isSuccess: true })
 })
 
 app.listen(port, () => {
