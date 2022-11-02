@@ -23,6 +23,10 @@ MongoClient.connect(
     }
 )
 
+app.post('/register', (req, res) => {
+    res.status(200).json({ isSuccess: true })
+})
+
 app.listen(port, () => {
     console.log(`server is listening on port ${port}...`)
 })
