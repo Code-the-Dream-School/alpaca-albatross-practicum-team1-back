@@ -1,3 +1,5 @@
+const mongoose = require('mongoose')
+
 const PostingSchema = new mongoose.Schema(
     {
         userName: {

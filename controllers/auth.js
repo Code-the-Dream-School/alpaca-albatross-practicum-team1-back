@@ -10,4 +10,4 @@ const login = async (req, res) => {
     res.status(200).json({ isLoggedIn: true })
 }
 
-model.exports = { login }
+module.exports = { login }
