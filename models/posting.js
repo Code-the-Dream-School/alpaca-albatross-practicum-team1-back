@@ -5,7 +5,7 @@ const PostingSchema = new mongoose.Schema(
             required: [true, 'Please provide name'],
             maxlength: 50,
         },
-        postMessage: {
+        message: {
             type: String,
             required: [true, 'Please provide a posting'],
             maxlength: 200,

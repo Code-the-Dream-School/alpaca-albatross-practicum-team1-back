@@ -1,6 +1,11 @@
 const express = require('express')
 const app = express()
+
 const port = 3000
+
+//routers
+const authRouter = require('./routes/Auth')
+const postingRouter = require('./routes/Posting')
 
 // TODO: move to env file & get proper dev/prod url(depending on environment)
 const MongoClient = require('mongodb').MongoClient
@@ -25,17 +30,9 @@ MongoClient.connect(
 
 app.use(express.json())
 
-app.get('/', (req, res) => {
-    res.send('volunteer api')
-})
-
-app.post('/login', (req, res) => {
-    res.status(200).json({ isSuccess: true })
-})
-
-app.post('/posting', (req, res) => {
-    res.status(200).json({ isSuccess: true })
-})
+//routes
+app.use('/api/v1/auth', authRouter)
+app.use('/api/v1/posting', postingRouter)
 
 const start = async () => {
     try {
