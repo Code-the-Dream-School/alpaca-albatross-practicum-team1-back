@@ -1,32 +1,25 @@
+require('dotenv').config()
 const express = require('express')
+const mongoose = require('mongoose')
 const app = express()
 const port = 3000
 
+// routers
+const authRouter = require('./routes/auth')
+// routes
+app.use('api/v1/auth/register', authRouter)
+
 // TODO: move to env file & get proper dev/prod url(depending on environment)
-const MongoClient = require('mongodb').MongoClient
+mongoose
+    .connect('mongodb://localhost:27017/volunteer', { useNewUrlParser: true })
+    .then(console.log('connection successful'))
+    .catch((error) => console.error(error))
 
-const url = 'mongodb://127.0.0.1:27017'
-
-MongoClient.connect(
-    url,
-    {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-    },
-    (err, client) => {
-        if (err) {
-            return console.log(err)
-        }
-        const db = client.db('volunteer')
-
-        console.log(`MongoDB Connected: ${url}`)
+const start = async () => {
+    try {
+        app.listen(port, console.log(`server is listening on port ${port}...`))
+    } catch (error) {
+        console.log(error)
     }
-)
-
-app.post('/register', (req, res) => {
-    res.status(200).json({ isSuccess: true })
-})
-
-app.listen(port, () => {
-    console.log(`server is listening on port ${port}...`)
-})
+}
+start()
