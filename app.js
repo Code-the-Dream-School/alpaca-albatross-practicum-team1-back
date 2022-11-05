@@ -7,11 +7,11 @@ const port = 3000
 // routers
 const authRouter = require('./routes/auth')
 // routes
-app.use('api/v1/auth/register', authRouter)
+app.use('api/v1/auth', authRouter)
 
 // TODO: move to env file & get proper dev/prod url(depending on environment)
 mongoose
-    .connect('mongodb://localhost:27017/volunteer', { useNewUrlParser: true })
+    .connect('mongodb://127.0.0.1:27017/volunteer', { useNewUrlParser: true })
     .then(console.log('connection successful'))
     .catch((error) => console.error(error))
 
