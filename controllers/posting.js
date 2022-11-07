@@ -1,9 +1,14 @@
 const Posting = require('../models/posting')
 const mongoose = require('mongoose')
+const postingService = require('../service/posting')
 
-const getAllPosting = async (req, res) => {
-    const postings = await result
-    res.status(200).send(message, userName)
+async function get(req, res, next) {
+    try {
+        const posts = await postingService.getAllPosting(req)
+        res.json({ posts: posts })
+    } catch (error) {
+        console.error(`Error while getting posts`, error.message)
+        next(error)
+    }
 }
-
-module.exports = { getAllPosting }
+module.exports = { get }

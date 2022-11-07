@@ -2,8 +2,8 @@ const { model } = require('mongoose')
 const User = require('../models/user')
 
 const login = async (req, res) => {
-    const { userName, password } = req.body
-    if (!userName || !password) {
+    const { username, password } = req.body
+    if (!username || !password) {
         throw 'Please provide username and password'
         //TODO add auth
     }

@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 
 const PostingSchema = new mongoose.Schema(
     {
-        userName: {
+        username: {
             type: String,
             required: [true, 'Please provide name'],
             maxlength: 50,
