@@ -20,31 +20,6 @@ app.use(express.json())
 app.use('/auth', authRouter)
 app.use('/posts', postingRouter)
 
-//tests
-app.post('/testAddNewUser', (req, res) => {
-    var newUser = new User({
-        username: req.body.username,
-        password: req.body.password,
-        email: req.body.email,
-    })
-    // const userStore = User.findByIdAndRemove()
-    newUser.save(newUser)
-    res.status(200).json({ success: true })
-})
-
-app.post('/testAddPost', async (req, res) => {
-    const user = await User.find()
-    const posts = new posting({
-        username: req.body.username,
-        message: req.body.message,
-        status: 'current',
-        createdBy: user[0]._id,
-    })
-    // const userStore = User.findByIdAndRemove()
-    posts.save()
-    res.status(200).json({ success: true })
-})
-
 const start = async () => {
     try {
         app.listen(port, console.log(`server is listening on port ${port}...`))
