@@ -7,7 +7,7 @@ const port = 3000
 // routers
 const authRouter = require('./routes/auth')
 // routes
-app.use('api/v1/auth', authRouter)
+app.use('/auth/register', authRouter)
 
 // TODO: move to env file & get proper dev/prod url(depending on environment)
 mongoose
