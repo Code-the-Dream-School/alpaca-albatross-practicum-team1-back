@@ -1,19 +1,20 @@
+require('dotenv').config()
 const express = require('express')
+const mongoose = require('mongoose')
 const app = express()
 const port = 3000
-const posting = require('./models/posting')
-
-//db connection
-const mongoose = require('mongoose')
-const connectDB = require('./db/connect')
-
-//routers
-
-const postingRouter = require('./routes/Posting')
-
 app.use(express.json())
 
-app.use('/posts', postingRouter)
+// routers
+const authRouter = require('./routes/auth')
+// routes
+app.use('/auth', authRouter)
+
+// TODO: move to env file & get proper dev/prod url(depending on environment)
+mongoose
+    .connect('mongodb://127.0.0.1:27017/volunteer', { useNewUrlParser: true })
+    .then(console.log('connection successful'))
+    .catch((error) => console.error(error))
 
 const start = async () => {
     try {
