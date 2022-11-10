@@ -3,11 +3,12 @@ const express = require('express')
 const mongoose = require('mongoose')
 const app = express()
 const port = 3000
+app.use(express.json())
 
 // routers
 const authRouter = require('./routes/auth')
 // routes
-app.use('/auth/register', authRouter)
+app.use('/auth', authRouter)
 
 // TODO: move to env file & get proper dev/prod url(depending on environment)
 mongoose
