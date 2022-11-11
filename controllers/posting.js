@@ -11,4 +11,14 @@ async function get(req, res, next) {
         next(error)
     }
 }
-module.exports = { get }
+
+async function create(req, res, next) {
+    try {
+        const posting = await postingService.createPosting(req)
+        res.send('Posting created')
+    } catch (error) {
+        console.error('Error while creating post', error.message)
+        next(error)
+    }
+}
+module.exports = { get, create }

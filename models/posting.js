@@ -5,23 +5,23 @@ const PostingSchema = new mongoose.Schema(
         username: {
             type: String,
             required: [true, 'Please provide name'],
-            maxlength: 50,
+            maxlength: 50
         },
         message: {
             type: String,
             required: [true, 'Please provide a posting'],
-            maxlength: 200,
+            maxlength: 200
         },
         status: {
             type: String,
             enum: ['current', 'fulfilled'],
-            default: 'current',
+            default: 'current'
         },
         createdBy: {
             type: mongoose.Types.ObjectId,
             ref: 'User',
-            required: [true, 'Please provide user'],
-        },
+            required: [true, 'Please provide user']
+        }
     },
     { timestamps: true }
 )
