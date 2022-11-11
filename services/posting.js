@@ -7,10 +7,16 @@ const getAllPosting = async (req, res) => {
     //res.status(200).json({ postings })
 }
 
-const createPosting = async (req, res) => {
-    req.body.createdBy = req.user.userId
-    const post = await Posting.create(req.body)
-    res.status(StatusCodes.CREATED).json({ post })
+const createPosting = async (req) => {
+    const { username, message } = req.body
+    const user = await User.find({ username })
+    const post = {
+        username,
+        message,
+        status: 'current',
+        createdBy: user[0]._id
+    }
+    return await Posting.create(post)
 }
 
 module.exports = {

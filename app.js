@@ -3,11 +3,15 @@ const express = require('express')
 const mongoose = require('mongoose')
 const app = express()
 const port = 3001
-app.use(express.json())
+const cors = require('cors')
 
+app.use(express.json())
+app.use(cors())
 // routers
+const authRouter = require('./routes/auth')
 const postingRouter = require('./routes/Posting')
 // routes
+app.use('/auth', authRouter)
 app.use('/post', postingRouter)
 
 // TODO: move to env file & get proper dev/prod url(depending on environment)
