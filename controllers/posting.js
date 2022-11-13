@@ -14,8 +14,8 @@ async function get(req, res, next) {
 
 async function create(req, res, next) {
     try {
-        await postingService.createPosting(req)
-        res.json({ id: postingService._id.toString() })
+        const post = await postingService.createPosting(req)
+        res.json({ id: post._id.toString() })
     } catch (error) {
         console.error('Error while creating post', error.message)
         next(error)

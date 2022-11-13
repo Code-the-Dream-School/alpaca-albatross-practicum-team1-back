@@ -1,5 +1,6 @@
 const { StatusCodes } = require('http-status-codes')
 const Posting = require('../models/posting')
+const User = require('../model/user')
 
 const getAllPosting = async (req, res) => {
     const postings = await Posting.find()
@@ -7,7 +8,7 @@ const getAllPosting = async (req, res) => {
 }
 
 const createPosting = async (req) => {
-    const { username, message } = req.body
+    const { username, message, title } = req.body
     const user = await User.find({ username })
     const post = {
         username,

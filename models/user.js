@@ -34,6 +34,12 @@ const UserSchema = new mongoose.Schema({
         type: String,
         minlength: 6,
         required: [true, 'Please provide password']
+    },
+    title: {
+        type: String,
+        required: [true, 'Please provide title'],
+        maxlength: 50,
+        minlength: 2
     }
 })
 UserSchema.pre('save', async function () {
