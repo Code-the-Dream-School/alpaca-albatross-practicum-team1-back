@@ -21,6 +21,12 @@ const PostingSchema = new mongoose.Schema(
             type: mongoose.Types.ObjectId,
             ref: 'User',
             required: [true, 'Please provide user']
+        },
+        title: {
+            type: String,
+            required: [true, 'Please provide title'],
+            maxlength: 50,
+            minlength: 2
         }
     },
     { timestamps: true }
