@@ -2,13 +2,17 @@ require('dotenv').config()
 const express = require('express')
 const mongoose = require('mongoose')
 const app = express()
-const port = 3000
-app.use(express.json())
+const port = 3001
+const cors = require('cors')
 
+app.use(express.json())
+app.use(cors())
 // routers
 const authRouter = require('./routes/auth')
+const postingRouter = require('./routes/Posting')
 // routes
 app.use('/auth', authRouter)
+app.use('/post', postingRouter)
 
 // TODO: move to env file & get proper dev/prod url(depending on environment)
 mongoose

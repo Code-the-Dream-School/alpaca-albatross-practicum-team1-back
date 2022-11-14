@@ -1,25 +1,33 @@
+const mongoose = require('mongoose')
+
 const PostingSchema = new mongoose.Schema(
     {
-        userName: {
+        username: {
             type: String,
             required: [true, 'Please provide name'],
-            maxlength: 50,
+            maxlength: 50
         },
-        postMessage: {
+        message: {
             type: String,
             required: [true, 'Please provide a posting'],
-            maxlength: 200,
+            maxlength: 200
         },
         status: {
             type: String,
             enum: ['current', 'fulfilled'],
-            default: 'current',
+            default: 'current'
         },
         createdBy: {
             type: mongoose.Types.ObjectId,
             ref: 'User',
-            required: [true, 'Please provide user'],
+            required: [true, 'Please provide user']
         },
+        title: {
+            type: String,
+            required: [true, 'Please provide title'],
+            maxlength: 50,
+            minlength: 2
+        }
     },
     { timestamps: true }
 )
