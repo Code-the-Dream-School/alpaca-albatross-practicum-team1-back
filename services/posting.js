@@ -21,7 +21,20 @@ const createPosting = async (req) => {
     return createdPost
 }
 
+const getPosting = async (req, res) => {
+    const {
+        params: { id: username }
+    } = req
+
+    const posting = await Posting.findOne({ _id: username })
+    if (!posting) {
+        throw new Error(`No posting with username`)
+    }
+    res.status(StatusCodes.OK).json({ posting })
+}
+
 module.exports = {
     getAllPosting,
-    createPosting
+    createPosting,
+    getPosting
 }

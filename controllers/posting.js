@@ -21,4 +21,15 @@ async function create(req, res, next) {
         next(error)
     }
 }
-module.exports = { get, create }
+
+const getPost = async (req, res, next) => {
+    try {
+        const posting = await postingService.getPosting(req)
+        res.json({ posting: posting })
+    } catch (error) {
+        console.error(`Error while getting posting`, error.message)
+        next(error)
+    }
+}
+
+module.exports = { get, create, getPost }
