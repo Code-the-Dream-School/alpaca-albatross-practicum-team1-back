@@ -4,7 +4,7 @@ const postingService = require('../services/posting')
 
 async function get(req, res, next) {
     try {
-        const posts = await postingService.getAllPosting(req)
+        const posts = await postingService.getAllPosts(req)
         res.json({ posts: posts })
     } catch (error) {
         console.error(`Error while getting posts`, error.message)
@@ -14,7 +14,7 @@ async function get(req, res, next) {
 
 async function create(req, res, next) {
     try {
-        const post = await postingService.createPosting(req)
+        const post = await postingService.createPost(req)
         res.json({ id: post._id.toString() })
     } catch (error) {
         console.error('Error while creating post', error.message)
@@ -24,8 +24,8 @@ async function create(req, res, next) {
 
 const getPost = async (req, res, next) => {
     try {
-        const posting = await postingService.getPosting(req)
-        res.json({ posting: posting })
+        const post = await postingService.getPosts(req)
+        res.json({ post: post })
     } catch (error) {
         console.error(`Error while getting posting`, error.message)
         next(error)
