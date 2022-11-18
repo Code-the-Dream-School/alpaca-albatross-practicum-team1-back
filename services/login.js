@@ -1,5 +1,6 @@
 const User = require('../models/user')
 const { StatusCodes } = require('http-status-codes')
+const { UnauthenticatedError } = require('../errors/UnauthenticatedError')
 
 const login = async (req, res) => {
     const { email, password } = req.body
@@ -19,7 +20,14 @@ const login = async (req, res) => {
     }
 
     const token = user.createJWT()
-    res.status(StatusCodes.OK).json({ token })
+    const response = {
+        firstName: user.firstName,
+        lastName: user.lastName,
+        username: user.username,
+        email: user.email,
+        token
+    }
+    return response
 }
 
 module.exports = { login }

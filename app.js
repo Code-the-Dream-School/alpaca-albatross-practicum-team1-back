@@ -9,11 +9,9 @@ app.use(express.json())
 app.use(cors())
 
 // routers
-const authRouter = require('./routes/register')
-const loginRouter = require('./routes/login')
+const authRouter = require('./routes/auth')
 const postingRouter = require('./routes/Posting')
 // routes
-app.use('/', loginRouter)
 app.use('/auth', authRouter)
 app.use('/post', postingRouter)
 
