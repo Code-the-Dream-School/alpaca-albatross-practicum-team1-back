@@ -7,6 +7,7 @@ const cors = require('cors')
 
 app.use(express.json())
 app.use(cors())
+
 // routers
 const authRouter = require('./routes/auth')
 const postingRouter = require('./routes/Posting')

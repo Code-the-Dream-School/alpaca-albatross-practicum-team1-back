@@ -1,7 +1,6 @@
 const User = require('../models/user')
-const { StatusCodes } = require('http-status-codes')
 
-const register = async (req, res) => {
+const register = async (req) => {
     const user = await User.create({
         firstName: req.body.firstName,
         lastName: req.body.lastName,
@@ -10,11 +9,7 @@ const register = async (req, res) => {
         password: req.body.password
     })
     const token = user.createJWT()
-    res.status(StatusCodes.OK).json({
-        token
-    })
+    return token
 }
 
-module.exports = {
-    register
-}
+module.exports = { register }
