@@ -4,7 +4,7 @@ const { login } = require('../services/login')
 
 async function postRegister(req, res, next) {
     try {
-        const token = register(req)
+        const token = await register(req)
         res.status(StatusCodes.OK).json({
             token
         })
