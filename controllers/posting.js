@@ -27,9 +27,23 @@ const getPost = async (req, res, next) => {
         const post = await postingService.getPosts(req)
         res.json({ post: post })
     } catch (error) {
-        console.error(`Error while getting posting`, error.message)
+        console.error(`Error while getting post`, error.message)
+        next(error)
+    }
+}
+const updatePost = async (req, res, next) => {
+    try {
+        const post = await postingService.updatesPost(req)
+        res.json({ post: post })
+    } catch (error) {
+        console.error('Error while editing post', error.message)
         next(error)
     }
 }
 
-module.exports = { get, create, getPost }
+module.exports = {
+    get,
+    create,
+    getPost,
+    updatePost
+}
