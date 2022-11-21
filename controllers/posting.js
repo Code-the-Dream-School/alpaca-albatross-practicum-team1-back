@@ -31,13 +31,14 @@ const getPost = async (req, res, next) => {
         next(error)
     }
 }
-const updatePost = async (req, res, next) => {
+const updatePost = async (req, res) => {
     try {
         const post = await postingService.updatesPost(req)
         res.json({ post: post })
     } catch (error) {
-        console.error('Error while editing post', error.message)
-        next(error)
+        res.status(500).json({
+            error: error.message
+        })
     }
 }
 

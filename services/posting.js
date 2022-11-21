@@ -30,20 +30,15 @@ const getPosts = async (req, res) => {
     return post
 }
 const updatesPost = async (req, res) => {
-    const {
-        firstName,
-        lastName,
-        username,
-        email,
-        message,
-        status,
-        title,
-        _id
-    } = req.body
-    const post = await Posting.findByIdAndUpdate({ _id }, req.body, {
-        new: true,
-        runValidators: true
-    })
+    const { message, status, title, id } = req.body
+    const post = await Posting.findByIdAndUpdate(
+        id,
+        { message, status, title },
+        {
+            new: true,
+            runValidators: true
+        }
+    )
     if (!post) {
         throw new Error(`No post found`)
     }
