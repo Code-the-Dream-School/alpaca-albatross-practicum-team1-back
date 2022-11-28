@@ -31,8 +31,7 @@ const PostingSchema = new mongoose.Schema(
         },
         applicants: {
             type: [mongoose.Schema.Types.ObjectId],
-            ref: 'User',
-            required: [true, 'Please provide email']
+            ref: 'User'
         }
     },
     { timestamps: true }
