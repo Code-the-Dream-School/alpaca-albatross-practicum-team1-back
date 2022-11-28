@@ -12,6 +12,6 @@ router.route('/getPosts').get(get)
 router.route('/createPost').post(create)
 router.route('/getPost').get(getPost)
 router.route('/updatePost').patch(updatePost)
-router.route('/applicantPost').post(applicantPost)
+router.route('/apply').post(applicantPost)
 
 module.exports = router
