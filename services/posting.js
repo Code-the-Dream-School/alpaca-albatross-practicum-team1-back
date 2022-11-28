@@ -2,12 +2,12 @@ const { StatusCodes } = require('http-status-codes')
 const Posting = require('../models/posting')
 const User = require('../models/user')
 
-const getAllPosts = async (req, res) => {
-    const posts = await Posting.find()
-    return posts
+const getAllPosting = async (req, res) => {
+    const postings = await Posting.find()
+    return postings
 }
 
-const createPost = async (req) => {
+const createPosting = async (req) => {
     const { username, message, title } = req.body
     const user = await User.find({ username })
     const post = {
@@ -21,17 +21,7 @@ const createPost = async (req) => {
     return createdPost
 }
 
-const getPosts = async (req, res) => {
-    const { username } = req.body
-    const post = await Posting.find({ username })
-    if (!post) {
-        throw new Error(`No posting with username`)
-    }
-    return post
-}
-
 module.exports = {
-    getAllPosts,
-    createPost,
-    getPosts
+    getAllPosting,
+    createPosting
 }
