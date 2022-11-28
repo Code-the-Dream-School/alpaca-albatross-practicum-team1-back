@@ -45,18 +45,18 @@ const updatesPost = async (req, res) => {
     return post
 }
 const applicantsPost = async (req, res) => {
-    const { applicants, id } = req.body
-    const post = await Posting.findByIdAndUpdate(
-        id,
-        { applicants },
-        {
-            new: true,
-            runValidators: true
-        }
-    )
+    const { username, id } = req.body
+    const user = await User.find({ username })
+    const post = await Posting.findById(id)
+
+    post.applicants.push(user[0]._id)
+
+    post.save()
+
     if (!post) {
         throw new Error('No post found')
     }
+
     return post
 }
 

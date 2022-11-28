@@ -1,4 +1,5 @@
 const Posting = require('../models/posting')
+const User = require('../models/user')
 const mongoose = require('mongoose')
 const postingService = require('../services/posting')
 

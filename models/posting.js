@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const User = require('../models/user')
 
 const PostingSchema = new mongoose.Schema(
     {
@@ -29,7 +30,8 @@ const PostingSchema = new mongoose.Schema(
             minlength: 2
         },
         applicants: {
-            type: [String],
+            type: [mongoose.Schema.Types.ObjectId],
+            ref: 'User',
             required: [true, 'Please provide email']
         }
     },
