@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const User = require('../models/user')
 
 const PostingSchema = new mongoose.Schema(
     {
@@ -27,6 +28,10 @@ const PostingSchema = new mongoose.Schema(
             required: [true, 'Please provide title'],
             maxlength: 50,
             minlength: 2
+        },
+        applicants: {
+            type: [mongoose.Schema.Types.ObjectId],
+            ref: 'User'
         }
     },
     { timestamps: true }
