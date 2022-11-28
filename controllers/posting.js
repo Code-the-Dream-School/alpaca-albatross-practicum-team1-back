@@ -41,10 +41,21 @@ const updatePost = async (req, res) => {
         })
     }
 }
+const applicantPost = async (req, res) => {
+    try {
+        const post = await postingService.applicantsPost(req)
+        res.json({ post: post })
+    } catch (error) {
+        res.status(500).json({
+            error: error.message
+        })
+    }
+}
 
 module.exports = {
     get,
     create,
     getPost,
-    updatePost
+    updatePost,
+    applicantPost
 }

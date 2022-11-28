@@ -27,6 +27,10 @@ const PostingSchema = new mongoose.Schema(
             required: [true, 'Please provide title'],
             maxlength: 50,
             minlength: 2
+        },
+        applicants: {
+            type: [String],
+            required: [true, 'Please provide email']
         }
     },
     { timestamps: true }
