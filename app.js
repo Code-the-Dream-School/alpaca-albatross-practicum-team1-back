@@ -13,8 +13,11 @@ const authenticateUser = require('./middleware/authentication')
 // routers
 const authRouter = require('./routes/auth')
 const postingRouter = require('./routes/Posting')
+const authPostingRouter = require('./routes/authPosting')
+
 // routes
 app.use('/auth', authRouter)
+app.use('/post', authPostingRouter)
 app.use('/post', authenticateUser, postingRouter)
 
 // TODO: move to env file & get proper dev/prod url(depending on environment)
