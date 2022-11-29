@@ -44,10 +44,25 @@ const updatesPost = async (req, res) => {
     }
     return post
 }
+const applicantsPost = async (req, res) => {
+    const { username, id } = req.body
+    const user = await User.find({ username })
+    const post = await Posting.findById(id)
+    if (!post) {
+        throw new Error('No post found')
+    }
+
+    post.applicants.push(user[0]._id)
+
+    post.save()
+
+    return post
+}
 
 module.exports = {
     getAllPosts,
     createPost,
     getPosts,
-    updatesPost
+    updatesPost,
+    applicantsPost
 }
