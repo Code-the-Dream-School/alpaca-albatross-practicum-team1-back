@@ -3,8 +3,8 @@ const Posting = require('../models/posting')
 const User = require('../models/user')
 
 const getAllPosts = async (req, res) => {
-    const postings = await Posting.find()
-    return postings
+    const posts = await Posting.find()
+    return posts
 }
 
 const createPost = async (req) => {
