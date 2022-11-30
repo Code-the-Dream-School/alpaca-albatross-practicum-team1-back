@@ -17,8 +17,8 @@ const authPostingRouter = require('./routes/authPosting')
 
 // routes
 app.use('/auth', authRouter)
-app.use('/post', authenticateUser, authPostingRouter)
 app.use('/post', postingRouter)
+app.use('/post', authenticateUser, authPostingRouter)
 
 // TODO: move to env file & get proper dev/prod url(depending on environment)
 mongoose
