@@ -12,6 +12,7 @@ app.use(cors())
 // routers
 const authRouter = require('./routes/auth')
 const postingRouter = require('./routes/Posting')
+const { PROCESSING } = require('http-status-codes')
 // routes
 app.use('/auth', authRouter)
 app.use('/post', postingRouter)
@@ -24,14 +25,15 @@ mongoose
 
 //nodemailer
 const transporter = nodemailer.createTransport({
-    server: 'yahoo',
+    service: 'gmail',
     auth: {
-        user: process.env.EMAIL,
-        pass: process.env.PASSWORD
+        user: process.env.MAIL_USER,
+        pass: process.env.MAIL_PASS
     }
 })
+
 const mailOptions = {
-    from: 'volunteerboardapp@yahoo.com',
+    from: process.env.MAIL_USER,
     to: 'perryl17@gmail.com',
     subject: 'A kind soul applied to your post',
     text: 'it works'
@@ -40,7 +42,7 @@ transporter.sendMail(mailOptions, (err, data) => {
     if (err) {
         console.log('error occured', err)
     } else {
-        console.log('email sent')
+        console.log('email sent', data)
     }
 })
 

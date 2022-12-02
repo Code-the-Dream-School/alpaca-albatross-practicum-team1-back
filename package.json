@@ -20,6 +20,7 @@
     },
     "homepage": "https://github.com/Code-the-Dream-School/volunteer-back#readme",
     "dependencies": {
+        "@sendgrid/mail": "^7.7.0",
         "bcryptjs": "^2.4.3",
         "cors": "^2.8.5",
         "dotenv": "^16.0.3",
@@ -29,6 +30,7 @@
         "mongodb": "^4.11.0",
         "mongoose": "^6.7.0",
         "nodemailer": "^6.8.0",
+        "nodemailer-smtp-transport": "^2.7.4",
         "nodemon": "^2.0.20",
         "prettier": "^2.7.1",
         "salt": "^0.5.5"
