@@ -25,4 +25,5 @@ async function postLogin(req, res, next) {
         })
     }
 }
+
 module.exports = { postRegister, postLogin }
