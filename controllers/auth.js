@@ -15,9 +15,9 @@ async function postRegister(req, res, next) {
 
 async function postLogin(req, res, next) {
     try {
-        const token = await login(req)
+        const user = await login(req)
         res.status(StatusCodes.OK).json({
-            token
+            user
         })
     } catch (error) {
         res.status(StatusCodes.UNAUTHORIZED).json({
