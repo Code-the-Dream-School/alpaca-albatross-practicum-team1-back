@@ -54,7 +54,7 @@ const applicantsPost = async (req, res) => {
     const mailOptions = {
         from: process.env.MAIL_USER,
         to: creator.email,
-        subject: 'A kind soul applied to your post',
+        subject: 'A VolunteerBoard member is here to help!',
         text: req.body.message
     }
     transporter.sendMail(mailOptions, (err, data) => {
