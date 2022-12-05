@@ -46,7 +46,7 @@ const updatesPost = async (req, res) => {
     return post
 }
 const applicantsPost = async (req, res) => {
-    const { username, id, email } = req.body
+    const { username, id, } = req.body
     const user = await User.find({ username })
     const post = await Posting.findById(id)
     const creator = await User.findById(post.createdBy)

@@ -11,7 +11,7 @@ app.use(cors())
 // routers
 const authRouter = require('./routes/auth')
 const postingRouter = require('./routes/Posting')
-const { PROCESSING } = require('http-status-codes')
+
 // routes
 app.use('/auth', authRouter)
 app.use('/post', postingRouter)
