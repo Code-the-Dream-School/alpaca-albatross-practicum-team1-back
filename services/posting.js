@@ -1,6 +1,7 @@
 const { StatusCodes } = require('http-status-codes')
 const Posting = require('../models/posting')
 const User = require('../models/user')
+const { transporter } = require('./email')
 
 const getAllPosts = async (req, res) => {
     const posts = await Posting.find()
@@ -45,9 +46,25 @@ const updatesPost = async (req, res) => {
     return post
 }
 const applicantsPost = async (req, res) => {
-    const { username, id } = req.body
+    const { username, id, email } = req.body
     const user = await User.find({ username })
     const post = await Posting.findById(id)
+    const creator = await User.findById(post.createdBy)
+
+    const mailOptions = {
+        from: process.env.MAIL_USER,
+        to: creator.email,
+        subject: 'A kind soul applied to your post',
+        text: req.body.message
+    }
+    transporter.sendMail(mailOptions, (err, data) => {
+        if (err) {
+            console.log('error occured', err)
+        } else {
+            console.log('email sent', data)
+        }
+    })
+
     if (!post) {
         throw new Error('No post found')
     }
