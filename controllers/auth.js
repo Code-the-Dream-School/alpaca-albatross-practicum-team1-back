@@ -18,7 +18,7 @@ async function postLogin(req, res, next) {
     try {
         const user = await login(req)
         res.status(StatusCodes.OK).json({
-            token
+            user
         })
     } catch (error) {
         res.status(StatusCodes.UNAUTHORIZED).json({
@@ -30,7 +30,7 @@ async function postLogin(req, res, next) {
 async function validateToken(req, res, next) {
     try {
         authenticateUser(req, res)
-        const user = await User.find({ id: req.user.userId })
+        const user = await User.findById(req.user.userId)
         res.status(StatusCodes.OK).json({
             user
         })
