@@ -12,7 +12,7 @@ const auth = async (req, res) => {
     try {
         const payload = jwt.verify(token, process.env.JWT_SECRET)
         const expiry = payload.exp
-        if (expiry < Date.now()) {
+        if (expiry > Date.now()) {
             throw new UnauthenticatedError('Authentication invalid')
         }
 

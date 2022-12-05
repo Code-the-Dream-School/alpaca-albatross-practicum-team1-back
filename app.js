@@ -8,6 +8,10 @@ const cors = require('cors')
 app.use(express.json())
 app.use(cors())
 
+process.on('uncaughtException', function (error) {
+    console.log(error.stack)
+})
+
 const authenticateUser = require('./middleware/authentication')
 
 // routers
@@ -22,7 +26,7 @@ app.use('/post', authenticateUser, authPostingRouter)
 
 // TODO: move to env file & get proper dev/prod url(depending on environment)
 mongoose
-    .connect('mongodb://127.0.0.1:27017/volunteer', { useNewUrlParser: true })
+    .connect(process.env.DB_URL, { useNewUrlParser: true })
     .then(console.log('connection successful'))
     .catch((error) => console.error(error))
 
