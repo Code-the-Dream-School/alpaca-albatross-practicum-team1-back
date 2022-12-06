@@ -2,6 +2,7 @@ const { register } = require('../services/register')
 const { StatusCodes } = require('http-status-codes')
 const { login } = require('../services/login')
 const authenticateUser = require('../middleware/authentication')
+const User = require('../models/user')
 
 async function postRegister(req, res, next) {
     try {
@@ -32,9 +33,17 @@ async function validateToken(req, res, next) {
         authenticateUser(req, res)
         const user = await User.findById(req.user.userId)
         res.status(StatusCodes.OK).json({
-            user
+            user: {
+                firstName: user.firstName,
+                lastName: user.lastName,
+                username: user.username,
+                email: user.email
+            }
         })
     } catch (error) {
+        res.status(StatusCodes.UNAUTHORIZED).json({
+            error: error.message
+        })
         next(error)
     }
 }
