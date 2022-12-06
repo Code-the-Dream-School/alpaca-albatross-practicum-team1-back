@@ -13,6 +13,7 @@ const authenticateUser = require('./middleware/authentication')
 // routers
 const authRouter = require('./routes/auth')
 const postingRouter = require('./routes/Posting')
+const authPostingRouter = require('./routes/authPosting')
 
 
 // routes
