@@ -18,7 +18,6 @@ const authenticateUser = require('./middleware/authentication')
 const authRouter = require('./routes/auth')
 const postingRouter = require('./routes/Posting')
 const authPostingRouter = require('./routes/authPosting')
-
 // routes
 app.use('/auth', authRouter)
 app.use('/post', postingRouter)
