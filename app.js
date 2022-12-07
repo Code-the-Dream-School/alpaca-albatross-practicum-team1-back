@@ -5,6 +5,8 @@ const app = express()
 const port = 3001
 const cors = require('cors')
 
+const connectDB = require('./configs/connect')
+
 app.use(express.json())
 app.use(cors())
 
@@ -18,19 +20,15 @@ const authenticateUser = require('./middleware/authentication')
 const authRouter = require('./routes/auth')
 const postingRouter = require('./routes/Posting')
 const authPostingRouter = require('./routes/authPosting')
+
 // routes
 app.use('/auth', authRouter)
 app.use('/post', postingRouter)
 app.use('/post', authenticateUser, authPostingRouter)
 
-// TODO: move to env file & get proper dev/prod url(depending on environment)
-mongoose
-    .connect(process.env.DB_URL, { useNewUrlParser: true })
-    .then(console.log('connection successful'))
-    .catch((error) => console.error(error))
-
 const start = async () => {
     try {
+        await connectDB(process.env.MONGO_URI)
         app.listen(port, console.log(`server is listening on port ${port}...`))
     } catch (error) {
         console.log(error)
