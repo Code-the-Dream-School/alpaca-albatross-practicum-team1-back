@@ -9,7 +9,7 @@ const getAllPosts = async (req, res) => {
 }
 
 const createPost = async (req) => {
-    const { username, message, title } = req.body
+    const { username, message, title } = req.user.userId
     const user = await User.find({ username })
     const post = {
         username,
@@ -23,7 +23,7 @@ const createPost = async (req) => {
 }
 
 const getPosts = async (req, res) => {
-    const { username } = req.body
+    const { username } = req.user.userId
     const post = await Posting.find({ username })
     if (!post) {
         throw new Error(`No posting with username`)
@@ -46,7 +46,7 @@ const updatesPost = async (req, res) => {
     return post
 }
 const applicantsPost = async (req, res) => {
-    const { username, id, } = req.body
+    const { username, id } = req.body
     const user = await User.find({ username })
     const post = await Posting.findById(id)
     const creator = await User.findById(post.createdBy)

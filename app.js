@@ -2,7 +2,7 @@ require('dotenv').config()
 const express = require('express')
 const mongoose = require('mongoose')
 const app = express()
-const port = 3001
+const PORT = process.env.PORT || 3001
 const cors = require('cors')
 
 const connectDB = require('./configs/connect')
@@ -29,7 +29,7 @@ app.use('/post', authenticateUser, authPostingRouter)
 const start = async () => {
     try {
         await connectDB(process.env.MONGO_URI)
-        app.listen(port, console.log(`server is listening on port ${port}...`))
+        app.listen(PORT, console.log(`server is listening on port ${PORT}...`))
     } catch (error) {
         console.log(error)
     }
