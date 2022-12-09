@@ -15,7 +15,6 @@ const auth = async (req, res) => {
         if (expiry > Date.now()) {
             throw new UnauthenticatedError('Authentication invalid')
         }
-
         req.user = { userId: payload.userId, name: payload.username }
     } catch (error) {
         throw new UnauthenticatedError('Authentication invalid')

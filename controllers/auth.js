@@ -30,7 +30,7 @@ async function postLogin(req, res, next) {
 
 async function validateToken(req, res, next) {
     try {
-        authenticateUser(req, res)
+        await authenticateUser(req, res)
         const user = await User.findById(req.user.userId)
         res.status(StatusCodes.OK).json({
             user: {

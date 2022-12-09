@@ -2,6 +2,7 @@ const { StatusCodes } = require('http-status-codes')
 const Posting = require('../models/posting')
 const User = require('../models/user')
 const { transporter } = require('./email')
+const authenticateUser = require('../middleware/authentication')
 
 const getAllPosts = async (req, res) => {
     const posts = await Posting.find()
@@ -23,8 +24,10 @@ const createPost = async (req) => {
 }
 
 const getPosts = async (req, res) => {
-    const { username } = req.body
-    const post = await Posting.find({ username })
+    await authenticateUser(req, res)
+    const { userId } = req.user
+
+    const post = await Posting.find({ createdBy: userId })
     if (!post) {
         throw new Error(`No posting with username`)
     }
@@ -45,8 +48,9 @@ const updatesPost = async (req, res) => {
     }
     return post
 }
+
 const applicantsPost = async (req, res) => {
-    const { username, id, } = req.body
+    const { username, id } = req.body
     const user = await User.find({ username })
     const post = await Posting.findById(id)
     const creator = await User.findById(post.createdBy)

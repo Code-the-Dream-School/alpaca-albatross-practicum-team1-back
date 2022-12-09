@@ -24,7 +24,7 @@ const authPostingRouter = require('./routes/authPosting')
 // routes
 app.use('/auth', authRouter)
 app.use('/post', postingRouter)
-app.use('/post', authenticateUser, authPostingRouter)
+app.use('/post', authPostingRouter)
 
 const start = async () => {
     try {
