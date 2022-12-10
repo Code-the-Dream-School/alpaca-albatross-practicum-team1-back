@@ -2,7 +2,7 @@ require('dotenv').config()
 const express = require('express')
 const mongoose = require('mongoose')
 const app = express()
-const PORT = process.env.PORT || 3001
+const PORT = 3001
 const cors = require('cors')
 
 const connectDB = require('./configs/connect')
@@ -19,12 +19,12 @@ const authenticateUser = require('./middleware/authentication')
 // routers
 const authRouter = require('./routes/auth')
 const postingRouter = require('./routes/Posting')
-const authPostingRouter = require('./routes/authPosting')
+
 
 // routes
 app.use('/auth', authRouter)
 app.use('/post', postingRouter)
-app.use('/post', authenticateUser, authPostingRouter)
+
 
 const start = async () => {
     try {

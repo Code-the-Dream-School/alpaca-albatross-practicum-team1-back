@@ -2,20 +2,25 @@ const { StatusCodes } = require('http-status-codes')
 const Posting = require('../models/posting')
 const User = require('../models/user')
 const { transporter } = require('./email')
+const authenticateUser = require('../middleware/authentication')
 
 const getAllPosts = async (req, res) => {
     const posts = await Posting.find()
     return posts
 }
 
-const createPost = async (req) => {
-    const { username, message, title } = req.user.userId
-    const user = await User.find({ username })
+const createPost = async (req, res) => {
+    console.log(req.body)
+    await authenticateUser(req, res)
+    const { message, title, username } = req.body
+    const { userId } = req.user
+    const user = await User.findById(userId)
+    console.log('logging user', user)
     const post = {
         username,
         message,
         status: 'current',
-        createdBy: user[0]._id,
+        createdBy: user._id,
         title
     }
     const createdPost = await Posting.create(post)
@@ -23,14 +28,16 @@ const createPost = async (req) => {
 }
 
 const getPosts = async (req, res) => {
-    const { username } = req.user.userId
-    const post = await Posting.find({ username })
+    await authenticateUser(req, res)
+    const { userId } = req.user
+    const post = await Posting.find({ userId })
     if (!post) {
         throw new Error(`No posting with username`)
     }
     return post
 }
 const updatesPost = async (req, res) => {
+    await authenticateUser(req, res)
     const { message, status, title, id } = req.body
     const post = await Posting.findByIdAndUpdate(
         id,
@@ -46,8 +53,10 @@ const updatesPost = async (req, res) => {
     return post
 }
 const applicantsPost = async (req, res) => {
-    const { username, id } = req.body
-    const user = await User.find({ username })
+    await authenticateUser(req, res)
+    const { id } = req.body
+    const { userId } = req.user
+    const user = await User.findById(userId)
     const post = await Posting.findById(id)
     const creator = await User.findById(post.createdBy)
 
@@ -59,7 +68,7 @@ const applicantsPost = async (req, res) => {
     }
     transporter.sendMail(mailOptions, (err, data) => {
         if (err) {
-            console.log('error occured', err)
+            console.log('error occurred', err)
         } else {
             console.log('email sent', data)
         }
