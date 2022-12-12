@@ -10,7 +10,6 @@ const getAllPosts = async (req, res) => {
 }
 
 const createPost = async (req, res) => {
-    console.log(req.body)
     await authenticateUser(req, res)
     const { message, title, username } = req.body
     const { userId } = req.user
