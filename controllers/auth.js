@@ -11,6 +11,9 @@ async function postRegister(req, res, next) {
             token
         })
     } catch (error) {
+        res.status(StatusCodes.UNAUTHORIZED).json({
+            error: error.message
+        })
         next(error)
     }
 }
@@ -25,6 +28,7 @@ async function postLogin(req, res, next) {
         res.status(StatusCodes.UNAUTHORIZED).json({
             error: error.message
         })
+        next(error)
     }
 }
 
