@@ -28,8 +28,8 @@ const createPost = async (req, res) => {
 
 const getPosts = async (req, res) => {
     await authenticateUser(req, res)
-    const { userId } = req.user
-    const post = await Posting.find({ userId })
+    const {  username } = req.body
+    const post = await Posting.find({ username })
     if (!post) {
         throw new Error(`No posting with username`)
     }
