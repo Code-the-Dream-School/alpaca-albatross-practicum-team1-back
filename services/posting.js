@@ -29,7 +29,7 @@ const createPost = async (req, res) => {
 const getPosts = async (req, res) => {
     await authenticateUser(req, res)
     const { userId } = req.user
-    const post = await Posting.find({ userId })
+    const post = await Posting.find({ createdBy: userId })
     if (!post) {
         throw new Error(`No posting with username`)
     }
@@ -77,7 +77,7 @@ const applicantsPost = async (req, res) => {
         throw new Error('No post found')
     }
 
-    post.applicants.push(user[0]._id)
+    post.applicants.push(user._id)
 
     post.save()
 
