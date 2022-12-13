@@ -20,11 +20,9 @@ const authenticateUser = require('./middleware/authentication')
 const authRouter = require('./routes/auth')
 const postingRouter = require('./routes/Posting')
 
-
 // routes
 app.use('/auth', authRouter)
 app.use('/post', postingRouter)
-
 
 const start = async () => {
     try {
