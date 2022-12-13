@@ -52,6 +52,7 @@ const applicantPost = async (req, res) => {
     try {
         const post = await postingService.applicantsPost(req)
         res.json({ post: post })
+        console.log(post)
     } catch (error) {
         res.status(500).json({
             error: error.message

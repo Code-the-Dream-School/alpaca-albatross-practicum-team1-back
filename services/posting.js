@@ -28,7 +28,7 @@ const createPost = async (req, res) => {
 
 const getPosts = async (req, res) => {
     await authenticateUser(req, res)
-    const {  username } = req.body
+    const { username } = req.body
     const post = await Posting.find({ username })
     if (!post) {
         throw new Error(`No posting with username`)
@@ -56,8 +56,10 @@ const applicantsPost = async (req, res) => {
     const { id } = req.body
     const { userId } = req.user
     const user = await User.findById(userId)
+    console.log(user)
     const post = await Posting.findById(id)
     const creator = await User.findById(post.createdBy)
+    console.log(post)
 
     const mailOptions = {
         from: process.env.MAIL_USER,
