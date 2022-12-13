@@ -56,10 +56,8 @@ const applicantsPost = async (req, res) => {
     const { id } = req.body
     const { userId } = req.user
     const user = await User.findById(userId)
-    console.log(user)
     const post = await Posting.findById(id)
     const creator = await User.findById(post.createdBy)
-    console.log(post)
 
     const mailOptions = {
         from: process.env.MAIL_USER,
