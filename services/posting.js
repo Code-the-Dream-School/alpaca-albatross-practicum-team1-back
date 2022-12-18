@@ -29,12 +29,31 @@ const createPost = async (req, res) => {
 const getPosts = async (req, res) => {
     await authenticateUser(req, res)
     const { userId } = req.user
-    const post = await Posting.find({ createdBy: userId })
+    const allPosts = await Posting.find({ createdBy: userId })
+    const postsWithUsernames = []
+    let usernames = []
+    for (post of allPosts) {
+        const usernames = []
+        for (applicant of post.applicants) {
+            const user = await User.findById(applicant)
+            usernames.push(user.username)
+        }
+        const updatedPost = {
+            username: post.username,
+            title: post.title,
+            message: post.message,
+            users: usernames
+        }
+        postsWithUsernames.push(updatedPost)
+    }
+
     if (!post) {
         throw new Error(`No posting with username`)
     }
-    return post
+
+    return postsWithUsernames
 }
+
 const updatesPost = async (req, res) => {
     await authenticateUser(req, res)
     const { message, status, title, id } = req.body
@@ -51,6 +70,7 @@ const updatesPost = async (req, res) => {
     }
     return post
 }
+
 const applicantsPost = async (req, res) => {
     await authenticateUser(req, res)
     const { id } = req.body
