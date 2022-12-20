@@ -42,7 +42,8 @@ const getPosts = async (req, res) => {
             username: post.username,
             title: post.title,
             message: post.message,
-            users: usernames
+            users: usernames,
+            _id: post._id
         }
         postsWithUsernames.push(updatedPost)
     }
